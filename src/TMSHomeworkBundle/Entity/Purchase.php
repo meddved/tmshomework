@@ -1,0 +1,174 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nebojsam
+ * Date: 03/08/17
+ * Time: 20:46
+ */
+
+namespace TMSHomeworkBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="purchase")
+ */
+class Purchase
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $customerName;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="purchases")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $productId;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(0)
+     */
+    private $quantity;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\GreaterThanOrEqual(0)
+     */
+    private $discount;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\GreaterThan(0)
+     */
+    private $total;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\GreaterThanOrEqual("now")
+     */
+    private $purchaseDate;
+
+    /**
+     * @return int
+     */
+    public function getId() : int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerName() : string
+    {
+        return $this->customerName;
+    }
+
+    /**
+     * @param string $customerName
+     */
+    public function setCustomerName(string $customerName)
+    {
+        $this->customerName = $customerName;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProductId() : int
+    {
+        return $this->productId;
+    }
+
+    /**
+     * @param int $productId
+     */
+    public function setProductId(int $productId)
+    {
+        $this->productId = $productId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantity() : int
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param int $quantity
+     */
+    public function setQuantity(int $quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param float $discount
+     */
+    public function setDiscount(float $discount)
+    {
+        $this->discount = $discount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    /**
+     * @param float $total
+     */
+    public function setTotal(float $total)
+    {
+        $this->total = $total;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPurchaseDate()
+    {
+        return $this->purchaseDate;
+    }
+
+    /**
+     * @param \DateTime $purchaseDate
+     */
+    public function setPurchaseDate(\DateTime $purchaseDate)
+    {
+        $this->purchaseDate = $purchaseDate;
+    }
+}
