@@ -1,4 +1,4 @@
 services:
     tms_api.manager.data_manager:
         class: APIBundle\Manager\DataManager
-        arguments: ['@Doctrine\ORM\EntityManagerInterface']
+        arguments: ['@doctrine.orm.default_entity_manager']
