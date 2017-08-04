@@ -10,13 +10,18 @@ namespace TMSHomeworkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="purchase")
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Purchase
 {
+    const SERIALIZATION_GROUP_PURCHASE = 'purchase';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,12 +31,20 @@ class Purchase
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $customerName;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="purchases")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     *
+     * @Serializer\Type("TMSHomeworkBundle\Entity\Product")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $productId;
 
@@ -39,24 +52,40 @@ class Purchase
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      * @Assert\GreaterThan(0)
+     *
+     * @Serializer\Type("integer")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $quantity;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\GreaterThanOrEqual(0)
+     *
+     * @Serializer\Type("float")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $discount;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\GreaterThan(0)
+     *
+     * @Serializer\Type("float")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $total;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\GreaterThanOrEqual("now")
+     *
+     * @Serializer\Type("DateTime")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $purchaseDate;
 
@@ -93,17 +122,17 @@ class Purchase
     }
 
     /**
-     * @return int
+     * @return Product
      */
-    public function getProductId() : int
+    public function getProductId() : Product
     {
         return $this->productId;
     }
 
     /**
-     * @param int $productId
+     * @param Product $productId
      */
-    public function setProductId(int $productId)
+    public function setProductId(Product $productId)
     {
         $this->productId = $productId;
     }

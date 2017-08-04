@@ -107,19 +107,30 @@ class Product
     }
 
     /**
-     * @return Purchase[]
+     * @param Purchase $purchase
+     *
+     * @return Product
      */
-    public function getPurchases() : array
+    public function addPurchase(Purchase $purchase) : Product
     {
-        return $this->purchases;
+        $this->purchases[] = $purchase;
+        return $this;
     }
 
     /**
-     * @param Purchase[] $purchases
+     * @param Purchase $purchase
      */
-    public function setPurchases($purchases)
+    public function removePurchase(Purchase $purchase)
     {
-        $this->purchases = $purchases;
+        $this->purchases->removeElement($purchase);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPurchases() : ArrayCollection
+    {
+        return $this->purchases;
     }
 
 }

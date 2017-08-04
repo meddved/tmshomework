@@ -1,0 +1,2 @@
+tms_api_purchase:
+    resource: '@APIBundle/Resources/config/routing/purchase.yml'

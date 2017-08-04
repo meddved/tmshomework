@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@TMSHomeworkBundle/Resources/config/services.yml" }
+    - { resource: "@APIBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -91,3 +92,16 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+fos_rest:
+    serializer:
+        serialize_null:       true
+
+    format_listener:
+        enabled:              true
+        rules:
+
+            # Method for URL
+            prefer_extension:     true
+            fallback_format:      html
+            priorities:           [json, xml, html]

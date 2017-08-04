@@ -1,0 +1,5 @@
+#PURCHASE CNTROLLER
+tms_api_purcase_list:
+    path: purchase
+    defaults: { _controller: APIBundle:Purchase:list }
+    methods: [GET]
