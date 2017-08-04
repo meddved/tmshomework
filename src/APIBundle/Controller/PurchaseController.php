@@ -17,10 +17,7 @@ class PurchaseController extends FOSRestController
 {
     public function listAction()
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $purchaseRepository = $entityManager->getRepository('TMSHomeworkBundle:Purchase');
-
-        $purchases = $purchaseRepository->findAll();
+        $purchases = $this->get('tms_api.manager.data_manager')->listAllPurchases();
 
         $context = new Context();
         $context->setGroups([Purchase::SERIALIZATION_GROUP_PURCHASE]);

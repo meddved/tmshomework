@@ -11,10 +11,13 @@ namespace TMSHomeworkBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="product")
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Product
 {
@@ -28,6 +31,10 @@ class Product
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
+     *
+     * @Serializer\Type("string")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $name;
 
@@ -38,6 +45,10 @@ class Product
      *     type="float",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
+     *
+     * @Serializer\Type("float")
+     * @Serializer\Groups({"purchase"})
+     * @Serializer\Expose("true")
      */
     private $price;
 

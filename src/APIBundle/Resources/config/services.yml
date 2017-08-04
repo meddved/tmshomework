@@ -1,4 +1,4 @@
 services:
-#    api.example:
-#        class: APIBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    tms_api.manager.data_manager:
+        class: APIBundle\Manager\DataManager
+        arguments: ['@Doctrine\ORM\EntityManagerInterface']
