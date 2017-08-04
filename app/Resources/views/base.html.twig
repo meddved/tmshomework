@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}TMS Homework{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="container-fluid">
+                {#<div><img class="navi-logo" src="{{ asset('assets/img/tms-logo.png') }}"> </div>#}
+                <div><a class="navbar-brand" href="#">TMS Homework</a></div>
+            </div>
+        </div>
+        <ul class="nav navbar-nav">
+            {#<li class="active"><a href="#">Home</a></li>#}
+            {% if is_granted('ROLE_USER') %}
+                <li><a href="{{ path('tms_product_page_list_all') }}">Product</a></li>
+                {#<li><a href="{{ path('fos_user_security_logout') }}">Purchase</a></li>#}
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            {% else %}
+                <li class="active"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<div class="main-content">
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}
+    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>

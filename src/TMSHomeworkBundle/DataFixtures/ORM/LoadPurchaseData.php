@@ -39,7 +39,7 @@ class LoadPurchaseData extends AbstractFixture implements FixtureInterface, Cont
             $purchase->setQuantity(4);
             $purchase->setTotal($product->getPrice() * $purchase->getQuantity());
             $purchase->setDiscount(2.5);
-            $purchase->setProductId($product);
+            $purchase->setProduct($product);
 
             $manager->persist($purchase);
 

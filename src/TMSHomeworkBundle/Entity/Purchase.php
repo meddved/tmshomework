@@ -40,13 +40,13 @@ class Purchase
 
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="purchases")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="product", referencedColumnName="id")
      *
      * @Serializer\Type("TMSHomeworkBundle\Entity\Product")
      * @Serializer\Groups({"purchase"})
      * @Serializer\Expose("true")
      */
-    private $productId;
+    private $product;
 
     /**
      * @ORM\Column(type="integer")
@@ -124,17 +124,17 @@ class Purchase
     /**
      * @return Product
      */
-    public function getProductId() : Product
+    public function getProduct() : Product
     {
-        return $this->productId;
+        return $this->product;
     }
 
     /**
-     * @param Product $productId
+     * @param Product $product
      */
-    public function setProductId(Product $productId)
+    public function setProduct(Product $product)
     {
-        $this->productId = $productId;
+        $this->product = $product;
     }
 
     /**

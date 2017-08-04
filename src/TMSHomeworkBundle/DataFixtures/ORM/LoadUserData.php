@@ -52,6 +52,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
             $user->setEmail($this->createEmail($user));
             $this->setUserPassword($user, $user->getUsername());
             $user->setRoles(['ROLE_USER']);
+            $user->setEnabled(true);
             $manager->persist($user);
         }
 
@@ -78,7 +79,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $passwordEncoder = $this->container->get('security.encoder_factory')->getEncoder($user);
         $encodedPassword = $passwordEncoder->encodePassword($password, $user->getSalt());
 
-        $user->setPassword($password);
+        $user->setPassword($encodedPassword);
     }
 
 }

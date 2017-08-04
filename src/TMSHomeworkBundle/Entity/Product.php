@@ -57,7 +57,7 @@ class Product
      *
      * @param Purchase[]
      *
-     * @ORM\OneToMany(targetEntity="TMSHomeworkBundle\Entity\Purchase", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="TMSHomeworkBundle\Entity\Purchase", mappedBy="product", cascade={"remove"})
      */
     private $purchases;
 

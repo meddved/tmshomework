@@ -13,5 +13,6 @@ tms_homework:
     resource: "@TMSHomeworkBundle/Resources/config/routing.yml"
     prefix:   /
 
-#fos_user:
-#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+tms_web_app:
+    resource: "@TMSHomeworkBundle/Controller/ProductCRUDController.php"
+    type: annotation

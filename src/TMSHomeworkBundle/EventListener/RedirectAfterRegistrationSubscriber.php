@@ -39,7 +39,7 @@ class RedirectAfterRegistrationSubscriber implements EventSubscriberInterface
      */
     public function onRegistrationSuccess(FormEvent $event)
     {
-        $url = $this->router->generate('tms_homework_homepage');
+        $url = $this->router->generate('tms_product_page_list_all');
         $response = new RedirectResponse($url);
         $event->setResponse($response);
     }
