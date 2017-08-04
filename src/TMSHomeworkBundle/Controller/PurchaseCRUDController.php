@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: nebojsam
  * Date: 04/08/17
- * Time: 15:01
+ * Time: 17:05
  */
 
 namespace TMSHomeworkBundle\Controller;
@@ -12,34 +12,34 @@ use FOS\RestBundle\Controller\Annotations\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use TMSHomeworkBundle\Entity\Product;
-use TMSHomeworkBundle\Form\Type\ProductEntryType;
+use TMSHomeworkBundle\Entity\Purchase;
+use TMSHomeworkBundle\Form\Type\PurchaseEntryType;
 
-class ProductCRUDController extends Controller
+class PurchaseCRUDController extends Controller
 {
     /**
      * @param Request $request
      *
-     * @Route("/product/create", name="tms_product_page_create")
+     * @Route("/purchase/create", name="tms_purchase_page_create")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request)
     {
-        $form = $this->createForm(ProductEntryType::class);
+        $form = $this->createForm(PurchaseEntryType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var $product Product */
-            $product = $form->getData();
+            /** @var $purchase Purchase */
+            $purchase = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($product);
+            $entityManager->persist($purchase);
             $entityManager->flush();
 
-            return $this->redirectToRoute('tms_product_page_list_all');
+            return $this->redirectToRoute('tms_purchase_page_list_all');
 
         }
 
@@ -49,32 +49,32 @@ class ProductCRUDController extends Controller
     }
 
     /**
-     * @Route("/product/list", name="tms_product_page_list_all")
+     * @Route("/purchase/list", name="tms_purchase_page_list_all")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $products = $entityManager->getRepository('TMSHomeworkBundle:Product')->findAll();
+        $purchases = $entityManager->getRepository('TMSHomeworkBundle:Purchase')->findAll();
 
-        return $this->render('TMSHomeworkBundle:ProductCRUD:list.html.twig', [
-            'products' => $products,
+        return $this->render('TMSHomeworkBundle:PurchaseCRUD:list.html.twig', [
+            'purchases' => $purchases,
         ]);
     }
 
     /**
      * @param Request $request
-     * @param Product $product
+     * @param Purchase $purchase
      *
-     * @Route("/product/edit/{id}", name="tms_product_page_edit")
-     * @ParamConverter("product", class="TMSHomeworkBundle:Product")
+     * @Route("/purchase/edit/{id}", name="tms_purchase_page_edit")
+     * @ParamConverter("purchase", class="TMSHomeworkBundle:Purchase")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, Product $product)
+    public function editAction(Request $request, Purchase $purchase)
     {
-        $form = $this->createForm(ProductEntryType::class, $product);
+        $form = $this->createForm(PurchaseEntryType::class, $purchase);
 
         $form->handleRequest($request);
 
@@ -83,34 +83,34 @@ class ProductCRUDController extends Controller
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
-            return $this->redirectToRoute('tms_product_page_list_all');
+            return $this->redirectToRoute('tms_purchase_page_list_all');
 
         }
 
-        return $this->render('TMSHomeworkBundle:ProductCRUD:edit.html.twig', [
+        return $this->render('TMSHomeworkBundle:PurchaseCRUD:edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
     /**
      * @param Request  $request
-     * @param Product $product
+     * @param Purchase $purchase
      *
-     * @Route("/product/delete/{id}", name="tms_product_page_delete")
-     * @ParamConverter("product", class="TMSHomeworkBundle:Product")
+     * @Route("/purchase/delete/{id}", name="tms_purchase_page_delete")
+     * @ParamConverter("purchase", class="TMSHomeworkBundle:Purchase")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, Product $product)
+    public function deleteAction(Request $request, Purchase $purchase)
     {
-        if ($product === null) {
-            return $this->redirectToRoute('tms_product_page_list_all');
+        if ($purchase === null) {
+            return $this->redirectToRoute('tms_purchase_page_list_all');
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($product);
+        $entityManager->remove($purchase);
         $entityManager->flush();
 
-        return $this->redirectToRoute('tms_product_page_list_all');
+        return $this->redirectToRoute('tms_purchase_page_list_all');
     }
 }

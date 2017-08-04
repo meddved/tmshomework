@@ -12,7 +12,3 @@ fos_user_register:
 tms_homework:
     resource: "@TMSHomeworkBundle/Resources/config/routing.yml"
     prefix:   /
-
-tms_web_app:
-    resource: "@TMSHomeworkBundle/Controller/ProductCRUDController.php"
-    type: annotation

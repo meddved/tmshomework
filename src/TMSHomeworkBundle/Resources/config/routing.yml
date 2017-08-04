@@ -1,3 +1,11 @@
 tms_homework_homepage:
     path:     /
     defaults: { _controller: TMSHomeworkBundle:Default:index }
+
+tms_product_crud:
+    resource: "@TMSHomeworkBundle/Controller/ProductCRUDController.php"
+    type: annotation
+
+tms_purchase_crud:
+    resource: "@TMSHomeworkBundle/Controller/PurchaseCRUDController.php"
+    type: annotation

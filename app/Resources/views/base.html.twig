@@ -22,7 +22,7 @@
             {#<li class="active"><a href="#">Home</a></li>#}
             {% if is_granted('ROLE_USER') %}
                 <li><a href="{{ path('tms_product_page_list_all') }}">Product</a></li>
-                {#<li><a href="{{ path('fos_user_security_logout') }}">Purchase</a></li>#}
+                <li><a href="{{ path('tms_purchase_page_list_all') }}">Purchase</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
             {% else %}
                 <li class="active"><a href="{{ path('fos_user_security_login') }}">Login</a></li>

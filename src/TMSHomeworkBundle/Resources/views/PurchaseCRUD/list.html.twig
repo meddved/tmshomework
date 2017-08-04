@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <table class="table table-hover table-responsive">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer name</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Discount (%)</th>
+            <th>Total</th>
+            <th>Purchase date</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.id }}</td>
+                <td>{{ purchase.customerName }}</td>
+                <td>{{ purchase.product.name }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td>{{ purchase.discount }}</td>
+                <td>{{ purchase.total }}</td>
+                <td>{{ purchase.purchaseDate|date('d.m.Y') }}</td>
+                <td>
+                    <a href="{{ path('tms_purchase_page_edit', { 'id': purchase.id }) }}" class="btn btn-default btn-sm">Edit</a>
+                    <a href="{{ path('tms_purchase_page_delete', { 'id': purchase.id }) }}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="8">
+                <a href="{{ path('tms_purchase_page_create') }}" class="btn btn-primary btn-sm">New purchase</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

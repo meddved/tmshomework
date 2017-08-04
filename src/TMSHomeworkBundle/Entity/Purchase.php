@@ -92,7 +92,7 @@ class Purchase
     /**
      * @return int
      */
-    public function getId() : int
+    public function getId()
     {
         return $this->id;
     }
@@ -108,7 +108,7 @@ class Purchase
     /**
      * @return string
      */
-    public function getCustomerName() : string
+    public function getCustomerName()
     {
         return $this->customerName;
     }
@@ -124,7 +124,7 @@ class Purchase
     /**
      * @return Product
      */
-    public function getProduct() : Product
+    public function getProduct()
     {
         return $this->product;
     }
@@ -140,7 +140,7 @@ class Purchase
     /**
      * @return int
      */
-    public function getQuantity() : int
+    public function getQuantity()
     {
         return $this->quantity;
     }
@@ -186,7 +186,7 @@ class Purchase
     }
 
     /**
-     * @return \DateTime
+     * @return string
      */
     public function getPurchaseDate()
     {

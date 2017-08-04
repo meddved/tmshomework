@@ -37,5 +37,4 @@ class ProductEntryType extends AbstractType
     {
         return 'product';
     }
-
 }
