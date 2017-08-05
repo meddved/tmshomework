@@ -15,6 +15,9 @@ use TMSHomeworkBundle\Entity\Purchase;
 
 class PurchaseController extends FOSRestController
 {
+    /**
+     * @return Response
+     */
     public function listAction()
     {
         $purchases = $this->get('tms_api.manager.data_manager')->listAllPurchases();
