@@ -8,23 +8,24 @@
 
 namespace APIBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class DataManager
 {
 
     /**
-     * @var EntityManager
+     * @var ObjectManager
      */
-    private $entityManager;
+    private $objectManager;
 
     /**
      * DataManager constructor.
-     * @param EntityManager $entityManager
+     * @param ObjectManager $objectManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(ObjectManager $objectManager)
     {
-        $this->entityManager = $entityManager;
+        $this->objectManager = $objectManager;
     }
 
 
@@ -33,7 +34,7 @@ class DataManager
      */
     public function listAllPurchases()
     {
-        return $this->entityManager
+        return $this->objectManager
             ->getRepository('TMSHomeworkBundle:Purchase')
             ->findAll();
     }

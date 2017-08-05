@@ -1,4 +1,4 @@
-#PURCHASE CNTROLLER
+#PURCHASE CONTROLLER
 tms_api_purcase_list:
     path: purchase
     defaults: { _controller: APIBundle:Purchase:list }

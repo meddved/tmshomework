@@ -26,7 +26,8 @@ class PurchaseController extends FOSRestController
         $context->setGroups([Purchase::SERIALIZATION_GROUP_PURCHASE]);
         $context->setSerializeNull(true);
 
-        $view = $this->view($purchases, Response::HTTP_OK)->setContext($context);
+        $view = $this->view($purchases, Response::HTTP_OK)
+            ->setContext($context);
 
         return $this->handleView($view);
     }
