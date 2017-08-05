@@ -5,9 +5,7 @@ A Symfony project created on August 3, 2017, 3:38 pm.
 
 Installation
 ===========
-* Execute 'composer install' command from terminal
-* Execute 'php bin/console doctrine:migrations:migrate'
-* Execute 'php bin/console doctrine:fixtures:load'
+* Execute './install_script.sh' command from terminal
 * Copy tmshomework.conf to your web server 
 for example Linux/apache -> copy the file to /etc/apache2/sites-available/. 
 * Execute 'sudo a2ensite /etc/apache2/sites-available/tmshomework.conf'
